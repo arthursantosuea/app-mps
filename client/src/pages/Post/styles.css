@@ -1,0 +1,7 @@
+.postPage{
+    width: 100%;
+    height: calc(100vh - 64px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
