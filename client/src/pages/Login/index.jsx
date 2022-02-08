@@ -1,20 +1,20 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {AuthContext} from '../../helpers/AuthContext';
+import { AuthContext } from "../../helpers/AuthContext";
 
 import "./styles.css";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const {setAuthState} = useContext(AuthContext);
+  const { setAuthState } = useContext(AuthContext);
 
-  useEffect(() => {
-      if(localStorage.getItem("accessToken")){
-          setAuthState(true);
-      }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("accessToken")) {
+  //     setAuthState(true);
+  //   }
+  // }, []);
 
   let navigate = useNavigate();
   const login = () => {
@@ -23,8 +23,12 @@ function Login() {
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        localStorage.setItem("accessToken", response.data);
-        setAuthState(true);
+        localStorage.setItem("accessToken", response.data.token);
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          status: true,
+        });
         navigate("/");
       }
     });
@@ -48,7 +52,9 @@ function Login() {
             setPassword(event.target.value);
           }}
         />
-        <button onClick={login} className="button">sing in</button>
+        <button onClick={login} className="button">
+          sing in
+        </button>
       </div>
     </div>
   );

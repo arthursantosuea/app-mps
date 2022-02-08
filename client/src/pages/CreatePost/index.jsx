@@ -15,7 +15,7 @@ function CreatePost() {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required(),
     postText: Yup.string().max(256).required(),
-    username: Yup.string().min(4).max(12).required(),
+    username: Yup.string().min(4).max(16).required(),
   });
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/posts", data).then((response) => {
@@ -34,7 +34,7 @@ function CreatePost() {
           <label>Title</label>
           <ErrorMessage name="title" component="span" />
           <Field
-            autocomplete="off"
+            autoComplete="off"
             id="inputCreatePost"
             name="title"
             placeholder="Type your title post"
@@ -42,7 +42,7 @@ function CreatePost() {
           <label>Description</label>
           <ErrorMessage name="postText" component="span" />
           <Field
-            autocomplete="off"
+            autoComplete="off"
             id="inputCreatePost"
             name="postText"
             placeholder="Type your description post"
@@ -50,7 +50,7 @@ function CreatePost() {
           <label>Username</label>
           <ErrorMessage name="username" component="span" />
           <Field
-            autocomplete="off"
+            autoComplete="off"
             id="inputCreatePost"
             name="username"
             placeholder="Type your username"

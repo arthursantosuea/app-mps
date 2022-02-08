@@ -38,5 +38,27 @@ body {
 .navigation-menu a{
   text-decoration: none;
   color: #fff;
-
+}
+.navigation-menu button{
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: rgb(209, 63, 63);
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.navigation-menu button:hover{
+  background-color: rgb(158, 34, 34);
+}
+.loggedInContainer{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.loggedInContainer h1{
+  font-size: 16px;
 }

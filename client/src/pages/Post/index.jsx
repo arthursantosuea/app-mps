@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../../helpers/AuthContext";
 import "./styles.css";
 
 function Post() {
@@ -8,6 +9,8 @@ function Post() {
   const [postObject, setPostObject] = useState({});
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const { authState } = useContext(AuthContext);
+
   useEffect(() => {
     axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
@@ -15,7 +18,7 @@ function Post() {
     axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
-  });
+  }, []);
   const addComment = () => {
     axios
       .post(
@@ -32,17 +35,33 @@ function Post() {
       )
       .then((response) => {
         if (response.data.error) {
-          alert(response.data.error);
+          console.log(response.data.error);
         } else {
-          const commentToAdd = { commentBody: newComment, username: response.data.username};
+          const commentToAdd = {
+            commentBody: newComment,
+            username: response.data.username,
+          };
           setComments([...comments, commentToAdd]);
           setNewComment("");
         }
       });
   };
+  const deleteComment = (id) => {
+    axios
+      .delete(`http://localhost:3001/comments/${id}`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => {
+        setComments(
+          comments.filter((val) => {
+            return val.id !== id;
+          })
+        );
+      });
+  };
   return (
     <div className="postPage">
-      <div className="post">
+      <div className="post" id="individual">
         <div className="title">{postObject.title}</div>
         <div className="description">{postObject.postText}</div>
         <div className="username">{postObject.username}</div>
@@ -66,6 +85,15 @@ function Post() {
               <div key={key} className="comment">
                 {comment.commentBody}
                 <label>{comment.username}</label>
+                {authState.username === comment.username && (
+                  <button
+                    onClick={() => {
+                      deleteComment(comment.id);
+                    }}
+                  >
+                    X
+                  </button>
+                )}
               </div>
             );
           })}
