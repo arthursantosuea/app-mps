@@ -1,0 +1,10 @@
+.signUpPage{
+    width: 100vw;
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#inputCreatePost{
+    color: white;
+}

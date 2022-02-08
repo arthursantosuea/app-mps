@@ -1,7 +1,54 @@
 .postPage{
-    width: 100%;
+    width: 80%;
     height: calc(100vh - 64px);
     display: grid;
     grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
     align-items: center;
+}
+.comments{
+    width: 80%;
+    height: auto;
+    padding: 24px;
+    border-radius: 8px;
+    margin: 0 auto;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.addCommentContainer{
+    display: flex;
+    flex-direction: column;
+}
+.addCommentContainer input{
+    height: 55px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.103);
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding-left: 16px;
+    color: #fff;
+    backdrop-filter: blur(8px);
+}
+.addCommentContainer button{
+    align-self: flex-end;
+    width: 25%;
+    height: 55px;
+    margin-top: 24px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    border: none;
+    background-color: rgb(114, 94, 230);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+.comment{
+    margin: 16px 0;
+    padding: 16px;
+    border-radius: 8px;
+    border-top: 1px solid rgb(255,255,255, 50%);
+    border-left: 1px solid rgb(255,255,255, 50%);
+    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.1);
 }

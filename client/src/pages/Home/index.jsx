@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
-const Home = () => {
+function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   let navigate = useNavigate();
 
@@ -17,7 +17,13 @@ const Home = () => {
     <div className="container">
       {listOfPosts.map((value, key) => {
         return (
-          <div key={key} className="post" onClick={() => {navigate(`post/${value.id}`)}}>
+          <div
+            key={key}
+            className="post"
+            onClick={() => {
+              navigate(`post/${value.id}`);
+            }}
+          >
             <div className="title"> {value.title} </div>
             <div className="description">{value.postText}</div>
             <div className="username">{value.username}</div>
@@ -26,6 +32,6 @@ const Home = () => {
       })}
     </div>
   );
-};
+}
 
 export default Home;

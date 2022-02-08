@@ -9,6 +9,7 @@ router.get("/:postId", async (request, response) => {
   });
 router.post("/", async (request, response) => {
     const comment = request.body;
+    const username = request.user.username; 
     await Comments.create(comment);
     response.json(comment);
 })

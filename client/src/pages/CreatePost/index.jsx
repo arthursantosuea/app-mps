@@ -5,7 +5,7 @@ import "./styles.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const CreatePost = () => {
+function CreatePost() {
   const navigate = useNavigate();
   const initialValues = {
     title: "",
@@ -19,10 +19,9 @@ const CreatePost = () => {
   });
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/posts", data).then((response) => {
-    //   setListOfPosts(response.data);
-    navigate("/");
+      //   setListOfPosts(response.data);
+      navigate("/");
     });
-    console.log(data);
   };
   return (
     <div className="containerCreatePost">
@@ -63,6 +62,6 @@ const CreatePost = () => {
       </Formik>
     </div>
   );
-};
+}
 
 export default CreatePost;
